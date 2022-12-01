@@ -1,26 +1,35 @@
 body
 {
+    font-family: "Lato", sans-serif;
     background-color: #212529;
+    text-align: center;
 }
 
 h2
 {
     color: silver;
     font-size: xx-large;
+    margin-bottom: 2rem;
+}
+
+.container
+{
+    width: 20%;
 }
 
 .navbar-brand
 {
     /* size for brand */
     font-size: xx-large;
-    margin-left: 4rem;
+    margin-left: 8rem;
     margin-right: 4rem;
 }
 
 .table
 {
     margin: auto;
-    width: 75%;
+    width: 50%;
+    margin-bottom: 2rem;
 }
 
 .btn
