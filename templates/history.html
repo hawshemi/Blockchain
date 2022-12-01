@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+    <h2>Transaction History</h2>
+      
+        <table class="table table-dark table-striped table-sm table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Reciever</th>
+                    <th>Sender</th>
+                    <th>Amount</th>
+                    <th>Timestamp</th>
+                    <th>Transaction ID</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for transaction in transactions %}
+                <tr>
+                    <td>{{transaction["id"]}}</td>
+                    <td>{{transaction["reciever"]}}</td>
+                    <td>{{transaction["sender"]}}</td>
+                    <td>{{transaction["amount"]}}</td>
+                    <td>{{transaction["timestamp"]}}</td>
+                    <td>{{transaction["tx_id"]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <form action="/delete" method="post">
+          <input class="btn btn-secondary" type="submit" value="Reset Blockchain">
+        </form>
+      
+{% endblock %}
