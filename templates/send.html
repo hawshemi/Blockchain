@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Send
+{% endblock %}
+
+{% block main %}
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto">
+                <h1>Blockchain</h1>
+
+                <form action="{{ url_for('send') }}" method="post">
+                    <label for="reciever" class="form-label"></label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Reciever</span>
+                        <input type="text" class="form-control" id="reciever" aria-describedby="basic-addon3" name="reciever">
+                    </div>
+
+                    <label for="sender" class="form-label"></label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Sender</span>
+                        <input type="text" class="form-control" id="sender" aria-describedby="basic-addon3" name="sender">
+                    </div>
+
+                    <label for="amount" class="form-label"></label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Amount($)</span>
+                        <input type="number" class="form-control" id="amount" aria-describedby="basic-addon3" name="amount">
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+  </body>
+
+{% endblock %}

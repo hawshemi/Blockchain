@@ -1,0 +1,10 @@
+{
+    "reciever": "",
+    "sender": "",
+    "amount": null,
+    "time": "",
+    "prev_block": {
+        "hash": "",
+        "filename": ""
+    }
+}

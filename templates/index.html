@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Blockchain
+{% endblock %}
+
+{% block main %}
+  <body>
+    <div class="container">
+
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto">
+
+                    <form action="{{ url_for('check') }}">
+                        <button class="btn btn-outline-info">Check</button>
+                    </form>
+
+                    {% for res in checking_results  %}
+
+                        <div class="check">
+                            Block {{ res['block'] }} : {{ res['results'] }}
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+  </body>
+
+{% endblock %}

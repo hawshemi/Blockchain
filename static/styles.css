@@ -1,0 +1,65 @@
+body
+{
+    background-color: #212529;
+}
+
+h2
+{
+    color: silver;
+    font-size: xx-large;
+}
+
+.form-group
+{
+    margin: 1rem;
+}
+
+.navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+.table
+{
+    margin: auto;
+    width: 75%;
+}
+
+.btn
+{
+    margin-top: 1rem;
+}
+
+.form-select
+{
+    width: auto;
+    margin-bottom: 2rem;
+}
+.navbar-text
+{
+    text-align: center;
+}
+
+.check
+{
+    color: silver;
+    margin-top: 1rem;
+}
+
+.footer
+{
+    font-size: small;
+    margin-top: 4rem;
+}
