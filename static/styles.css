@@ -22,15 +22,6 @@ h2
     margin-right: 4rem;
 }
 
-.form-control
-{
-    /* center form controls */
-    display: inline-block;
-
-    /* override Bootstrap's 100% width for form controls */
-    width: auto;
-}
-
 .table
 {
     margin: auto;
@@ -40,16 +31,6 @@ h2
 .btn
 {
     margin-top: 1rem;
-}
-
-.form-select
-{
-    width: auto;
-    margin-bottom: 2rem;
-}
-.navbar-text
-{
-    text-align: center;
 }
 
 .check
