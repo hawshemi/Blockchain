@@ -36,6 +36,12 @@
           </div>
         </nav>
 
+        {% if get_flashed_messages() %}
+            <div class="alert alert-dark flash" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+            </div>
+        {% endif %}
+
         <main class="container-fluid py-5 text-center">
             {% block main %}{% endblock %}
         </main>
