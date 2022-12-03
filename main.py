@@ -1,15 +1,19 @@
 from os import chdir, listdir, remove, getcwd
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, session
 import datetime
-
 from block import *
 
 
 app = Flask(__name__)
 
 
+# A nice Secret Key for flash messages
+app.config['SECRET_KEY'] = '69'
+
+
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+
 
 # Ensure responses aren't cached
 @app.after_request
@@ -49,28 +53,37 @@ def send():
 
         write_block(reciever=reciever, sender=sender, amount=amount)
 
+        flash(f"Transaction Created: {sender} sent {'$'+ amount} to {reciever}")
+
     return render_template('send.html')
 
 
 # Shows all transactions history table
 @app.route('/history', methods=['GET', 'POST'])
 def history():
-    """Show history of transactions"""
-    # Query database for displying everything
+
     transactions = db.execute("""
         SELECT id, reciever, sender, amount, timestamp, tx_id
         FROM transactions
         """)
+
     return render_template("history.html", transactions=transactions)
 
 
 #Reset the Blockchian - Delete All blocks except genesis block and clear the Database.
 @app.route('/delete', methods=['GET', 'POST'])
 def delete():
+
+    # Delete the transactions in database file
     db.execute("DELETE FROM transactions")
+
+    # Delete all files in blockchain directory except first one (Genesis Block)
     delete_from('blockchain', ['1'])
+
+    flash('Blockchain Resetted.')
+
     return render_template("history.html")
 
 
 if __name__ == '__main__':
-        app.run(debug=True)
+       app.run(debug=True)
