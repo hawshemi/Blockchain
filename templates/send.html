@@ -10,24 +10,23 @@
         <div class="row">
             <div class="mx-auto">
                 <h2>Make a Transaction</h2>
-
                 <form action="{{ url_for('send') }}" method="post">
                     <label for="reciever" class="form-label"></label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3">Reciever</span>
-                        <input type="text" class="form-control" id="reciever" aria-describedby="basic-addon3" name="reciever">
+                        <input type="text" class="form-control" id="reciever" aria-describedby="basic-addon3" required name="reciever">
                     </div>
 
                     <label for="sender" class="form-label"></label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3">Sender</span>
-                        <input type="text" class="form-control" id="sender" aria-describedby="basic-addon3" name="sender">
+                        <input type="text" class="form-control" id="sender" aria-describedby="basic-addon3" required name="sender">
                     </div>
 
                     <label for="amount" class="form-label"></label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3">Amount($)</span>
-                        <input type="number" class="form-control" id="amount" aria-describedby="basic-addon3" name="amount">
+                        <input type="number" class="form-control" id="amount" aria-describedby="basic-addon3" required name="amount">
                     </div>
                     <button class="btn btn-primary">Submit</button>
                 </form>
