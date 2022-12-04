@@ -34,8 +34,8 @@
 
         <button class="btn btn-secondary" onclick="table2Excel()">Export to XLS</button>
 
-        <form action="/delete" method="post">
-          <input class="btn btn-danger" type="submit" value="Reset Blockchain">
+        <form id="deleteForm" action="/delete" method="post">
+            <button type="button" class="btn btn-danger" onclick="resetBlockchain(form)">Reset Blockchain</button>
         </form>
       
 {% endblock %}
