@@ -1,10 +1,11 @@
 from os import chdir, listdir, remove, getcwd
-from flask import Flask, render_template, request, flash, session, redirect, url_for
+from flask import Flask, render_template, request, flash, session, redirect
 from flask_session import Session
-import datetime
+import re
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
+
 from block import *
 from helpers import *
 
@@ -27,6 +28,7 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
+
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
@@ -72,7 +74,6 @@ def send():
 
         write_block(reciever=reciever, sender=sender, amount=amount)
         
-
         flash(f"Transaction Created: {sender} sent {'$'+ amount} to {reciever}")
 
     return render_template('send.html')
@@ -108,9 +109,9 @@ def delete():
     return render_template("history.html")
 
 
+#Log user in
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """Log user in"""
 
     # Forget any user_id
     session.clear()
@@ -142,9 +143,9 @@ def login():
         return render_template("login.html")
 
 
+# Log user out
 @app.route("/logout")
 def logout():
-    """Log user out"""
 
     # Forget any user_id
     session.clear()
@@ -153,9 +154,9 @@ def logout():
     return redirect("/")
 
 
-# Validation Function
+# Password Validation Function
 def validate(password):
-    import re  # regular expression
+
     if len(password) < 8:
         return apology("Password should be at least 8 characters or longer")
     elif not re.search("[0-9]", password):
