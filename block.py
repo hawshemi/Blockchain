@@ -2,6 +2,9 @@ import json
 import os
 import hashlib
 import datetime
+from flask_session import Session
+from flask import session
+
 
 from cs50 import SQL
 
@@ -51,6 +54,7 @@ def write_block(reciever, sender, amount):
     prev_block = str(blocks_count)
     tx_id = get_hash(prev_block)
     data = {
+        "user_id": session["user_id"],
         "reciever": reciever,
         "sender": sender,
         "amount": amount,
@@ -66,19 +70,21 @@ def write_block(reciever, sender, amount):
     with open(current_block, 'w') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
         f.write('\n')
-        # Also export the data to a table in a database
-        db.execute("""
+        # Also export the data to a table in a database for each user
+        transactions = db.execute("""
                 INSERT INTO transactions
-                    (id, sender, reciever, amount, timestamp, tx_id)
-                VALUES (:id, :sender, :reciever, :amount, :timestamp, :tx_id)
-            """,
+                    (id, user_id, sender, reciever, amount, timestamp, tx_id)
+                VALUES (:id, :user_id, :sender, :reciever, :amount, :timestamp, :tx_id)
+            """,    
                     id=prev_block,
+                    user_id=session["user_id"],
                     sender=sender,
                     reciever=reciever,
                     amount=amount,
                     timestamp=timestamp,
                     tx_id=tx_id
                     )
+
 
 def main():
     check_integrity()
