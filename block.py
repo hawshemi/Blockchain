@@ -2,7 +2,6 @@ import json
 import os
 import hashlib
 import datetime
-from flask_session import Session
 from flask import session
 
 
@@ -38,9 +37,9 @@ def check_integrity():
         actual_hash = get_hash(prev_filename)
 
         if prev_hash == actual_hash:
-            res = 'OK'
+            res = 'VALID'
         else:
-            res = 'NOTOK'
+            res = 'NOT VALID!'
 
         print(f'Block {prev_filename}: {res}')
         results.append({'block': prev_filename, 'results': res})
