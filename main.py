@@ -236,4 +236,4 @@ for code in default_exceptions:
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=$PORT)
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
