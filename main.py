@@ -55,16 +55,20 @@ def delete_from(directory: str, keep: list) -> None:
 def is_provided(field):
 
     if not request.form.get(field):
-        return error(f"Must provide {field}", 400)
+        return error(f"MUST PROVIDE {field}", 400)
 
 
 # Main index - Blockchain Validity Status
 @app.route('/')
 @login_required
 def check():
-
+    username0 = db.execute("""
+        SELECT username FROM users
+        WHERE id=:user_id""", user_id=session["user_id"])
+    username = (str(username0)).strip().replace("username","").replace(":","").replace("[{","").replace("'}]","").replace("''","").replace("'","") # Yea, I know... (-_-)
+    
     results = check_integrity()
-    return render_template('index.html', checking_results=results)
+    return render_template('index.html', checking_results=results, username=username)
 
 
 # Make a Transaction
@@ -137,11 +141,11 @@ def login():
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = :username",
-                          username=request.form.get("username"))
+                          username=request.form.get("username").lower())
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return error("invalid username and/or password", 403)
+            return error("INVALID USERNAME AND/OR PASSWORD", 403)
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -169,13 +173,13 @@ def logout():
 def validate(password):
 
     if len(password) < 8:
-        return error("Password should be at least 8 characters or longer")
+        return error("PASSWORD SHOULD BE AT LEAST 8 CHARACTERS.")
     elif not re.search("[0-9]", password):
-        return error("Password must contain at least one digit")
+        return error("PASSWORD MUST CONTAIN AT LEAST ONE DIGIT.")
     elif not re.search("[A-Z]", password):
-        return error("Password must contain at least one uppercase letter")
+        return error("PASSWORD MUST CONTAIN AT LEAST ONE UPPERCASE LETTER.")
     elif not re.search("[@_!#$%&^*()<>?~+-/\{}:]", password):
-        return error("password must contain at least one special character")
+        return error("PASSWORD MUST CONTAIN AT LEAST ONE SPECIAL CHARACTER.")
 
 
 # Register a new user
@@ -196,18 +200,18 @@ def register():
 
         # Ensure password and confirmation match
         if request.form.get("password") != request.form.get("confirmation"):
-            return error("passwords must match")
+            return error("PASSWORDS DOES NOT MATCH.")
 
         # Query database for username
         try:
             prim_key = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)",
-                                  username=request.form.get("username"),
+                                  username=request.form.get("username").lower(),
                                   hash=generate_password_hash(request.form.get("password")))
         except:
-            return error("username already exixt", 400)
+            return error("USERNAME ALREADY EXISTS.", 400)
 
         if prim_key is None:
-            return error("registration error", 403)
+            return error("REGISTRATION ERROR.", 403)
 
         # Remember which user has logged in
         session["user_id"] = prim_key
