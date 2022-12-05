@@ -10,25 +10,27 @@
         <div class="row">
             <div class="mx-auto">
                 <h2>Make a Transaction</h2>
+                <h6>By submitting the transaction, you create a block with all the informations on blockchain.</h6>
+                <h6>Please fill all the fields.
                 <form action="/send" method="post">
                     <label for="reciever" class="form-label"></label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3">Reciever</span>
-                        <input type="text" class="form-control" id="reciever" aria-describedby="basic-addon3" required name="reciever">
+                        <input type="text" class="form-control" id="reciever" aria-describedby="basic-addon3" required placeholder="Reciever Name" name="reciever">
                     </div>
 
                     <label for="sender" class="form-label"></label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3">Sender</span>
-                        <input type="text" class="form-control" id="sender" aria-describedby="basic-addon3" required name="sender">
+                        <input type="text" class="form-control" id="sender" aria-describedby="basic-addon3" required placeholder="Sender Name" name="sender">
                     </div>
 
                     <label for="amount" class="form-label"></label>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon3">Amount($)</span>
-                        <input type="number" class="form-control" id="amount" aria-describedby="basic-addon3" required name="amount">
+                        <span class="input-group-text" id="basic-addon3">Amount ($)</span>
+                        <input type="number" class="form-control" id="amount" aria-describedby="basic-addon3" required placeholder="Amount" name="amount">
                     </div>
-                    <button class="btn btn-primary">Submit</button>
+                    <button class="btn btn-secondary">Submit</button>
                 </form>
             </div>
         </div>
