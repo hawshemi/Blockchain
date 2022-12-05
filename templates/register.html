@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <div id="error_message"></div>
+    <form action="/register" method="post">
+        <h2>Password Conditions:</h2>
+        <div class="password-condition">
+            <ul style="list-style-type:none;">
+                <li>
+                    8 characters or longer
+                </li>
+                <li>
+                    At least one number
+                </li>
+                <li>
+                    At least one capital letter
+                </li>
+                <li>
+                    At least one special character
+                </li>
+            </ul>
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Password (again)" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+
+{% endblock %}

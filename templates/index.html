@@ -5,24 +5,29 @@
 {% endblock %}
 
 {% block main %}
+
   <body>
     <div class="container-fluid">
-        <h2>Check the Blockchain Validity</h2>
-            <div class="row">
-                <div class="mx-auto">
-
-                    <form action="{{ url_for('check') }}">
-                        <button class="btn btn-outline-info">Check</button>
-                    </form>
-
-                    {% for res in checking_results %}
-
-                        <div class="check">
-                            Block {{ res['block'] }} : {{ res['results'] }}
-                        </div>
-
-                    {% endfor %}
-                </div>
+        <div id="testak"></div>
+        <h2>Blockchain Status</h2>
+            <div class="
+            table-index">
+                {% for res in checking_results %}
+                    <table class="table table-dark table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Block Number</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Block {{ res['block'] }}</td>
+                                <td>{{ res['results'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                {% endfor %}
             </div>
     </div>
   </body>

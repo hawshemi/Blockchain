@@ -5,9 +5,8 @@
 {% endblock %}
 
 {% block main %}
-
     <h2>Transaction History</h2>
-        <table class="table table-dark table-striped table-sm table-bordered">
+        <table class="table table-dark table-striped table-sm table-bordered table-history">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -34,8 +33,8 @@
 
         <button class="btn btn-secondary" onclick="table2Excel()">Export to XLS</button>
 
-        <form action="/delete" method="post">
-          <input class="btn btn-danger" type="submit" value="Reset Blockchain">
+        <form id="deleteForm" action="/delete" method="post">
+            <button type="button" class="btn btn-danger" onclick="resetBlockchain(form)">Reset Blockchain</button>
         </form>
       
 {% endblock %}

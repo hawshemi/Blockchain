@@ -25,7 +25,7 @@ h2
     margin-right: 4rem;
 }
 
-.table
+.table-history
 {
     margin: auto;
     width: 50%;
@@ -55,4 +55,24 @@ h2
     width: 20%;
     margin-bottom: 2rem;
     margin-top: 4rem;
+}
+
+.password-condition
+{
+    margin-left: -2rem;
+    color: silver;
+    margin-bottom: 2rem;
+}
+
+.form-group
+{
+    margin: auto;
+    width: 10%;
+    margin-bottom: 1rem;
+}
+
+.table-index
+{
+    margin: auto;
+    width: 25%;
 }
