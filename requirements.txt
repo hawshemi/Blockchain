@@ -7,3 +7,4 @@ itsdangerous
 gunicorn
 Jinja2
 MarkupSafe
+click
