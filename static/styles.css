@@ -7,9 +7,30 @@ body
 
 h2
 {
-    color: silver;
+    color: white;
     font-size: xx-large;
     margin-bottom: 2rem;
+    text-shadow: 0px 0px 8px silver;
+}
+
+h4
+{
+    color: white;
+    text-shadow: 0px 0px 8px black;
+}
+
+h6
+{
+    color: silver;
+}
+
+#particles-js {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -10;
+  top: 0;
+  left: 0
 }
 
 .container
@@ -21,8 +42,9 @@ h2
 {
     /* size for brand */
     font-size: xx-large;
-    margin-left: 8rem;
+    margin-left: 4rem;
     margin-right: 4rem;
+    color: white;
 }
 
 .table-history
@@ -30,6 +52,8 @@ h2
     margin: auto;
     width: 50%;
     margin-bottom: 2rem;
+    box-shadow: 0px 0px 100px black;
+    margin-top: 2rem;
 }
 
 .btn
@@ -37,16 +61,11 @@ h2
     margin-top: 2rem;
 }
 
-.check
-{
-    color: silver;
-    margin-top: 1rem;
-}
-
 .footer
 {
     font-size: small;
-    margin-top: 4rem;
+    margin-top: 20rem;
+    text-shadow: 0px 0px 10px black;
 }
 
 .flash
@@ -55,6 +74,8 @@ h2
     width: 20%;
     margin-bottom: 2rem;
     margin-top: 4rem;
+    box-shadow: 0px 0px 10px silver;
+    
 }
 
 .password-condition
@@ -62,6 +83,7 @@ h2
     margin-left: -2rem;
     color: silver;
     margin-bottom: 2rem;
+    text-shadow: 0px 0px 10px black;
 }
 
 .form-group
@@ -69,10 +91,99 @@ h2
     margin: auto;
     width: 10%;
     margin-bottom: 1rem;
+    box-shadow: 0px 0px 10px silver;
+}
+
+.form-control
+{
+    box-shadow: 0px 0px 10px black;
 }
 
 .table-index
 {
     margin: auto;
     width: 25%;
+    box-shadow: 0px 0px 100px black;
+}
+
+.navbar-text li a
+{   
+    color: white;
+}
+
+.navbar-logout li a
+{   
+    color: silver;
+}
+
+.navbar
+{
+    margin-top: 2rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+
+.navbar-toggler
+{   
+    background-color: silver;
+    color: silver;
+}
+
+.navbar-toggler:hover
+{   
+    background-color: silver;
+    color: silver;
+}
+
+a:hover
+{
+    background-color: silver;
+    border-radius: 4px;
+}
+
+.navbar-logout li a:hover
+{   
+    background-color: #d9534f;
+}
+
+button.btn
+{
+    transition: 0.2s ease-in-out 0s;
+}
+
+button.btn:hover
+{
+    transform: scale(1.2);
+}
+
+.btn-secondary
+{
+    box-shadow: 0px 0px 10px silver;
+}
+
+.btn-danger
+{
+    box-shadow: 0px 0px 10px red;
+}
+
+.login-container
+{
+    margin-left: 34%;
+    margin-top: 10%;
+}
+
+.login-img
+{
+    display: flex;
+    position: absolute;
+    max-width: 100%;
+    width: 30%;
+    height: auto;
+    margin-left: 13%;
+
+}
+
+.error-container
+{
+    margin-top: 4rem;
 }

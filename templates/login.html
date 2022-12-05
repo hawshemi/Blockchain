@@ -5,15 +5,20 @@
 {% endblock %}
 
 {% block main %}
-
-    <form action="/login" method="post">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
-        </div>
-        <div class="mb-3">
-            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
-        </div>
-        <button class="btn btn-primary" type="submit">Log In</button>
-    </form>
+    <h2>Please login to access the blockchain</h2>
+    <h6>Doesn't have Account? <a href=/register>Register</a></h6>
+    <img class="login-img" src="/static/img/login-blockchain.png" alt="Login Blockchain">
+    <div class="login-container">
+        <form action="/login" method="post">
+            <div class="mb-3">
+                <h2>Login</h2>
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+            </div>
+            <div>
+                <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+            </div>
+            <button class="btn btn-secondary" type="submit">Log In</button>
+        </form>
+    </div>
     
 {% endblock %}

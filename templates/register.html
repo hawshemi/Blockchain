@@ -8,33 +8,26 @@
 
     <div id="error_message"></div>
     <form action="/register" method="post">
-        <h2>Password Conditions:</h2>
+        <h2>Register a new Account</h2>
+        <h4>Password at least:</h4>
         <div class="password-condition">
             <ul style="list-style-type:none;">
-                <li>
-                    8 characters or longer
-                </li>
-                <li>
-                    At least one number
-                </li>
-                <li>
-                    At least one capital letter
-                </li>
-                <li>
-                    At least one special character
-                </li>
+                <li>8 Characters</li>
+                <li>One Number</li>
+                <li>One Capital Letter</li>
+                <li>One Special Character</li>
             </ul>
         </div>
         <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text">
+            <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text" required>
         </div>
         <div class="form-group">
-            <input class="form-control" name="password" placeholder="Password" type="password">
+            <input class="form-control" name="password" placeholder="Password" type="password" required>
         </div>
         <div class="form-group">
-            <input class="form-control" name="confirmation" placeholder="Password (again)" type="password">
+            <input class="form-control" name="confirmation" placeholder="Password (again)" type="password" required>
         </div>
-        <button class="btn btn-primary" type="submit">Register</button>
+        <button class="btn btn-secondary" type="submit">Register</button>
     </form>
 
 {% endblock %}
