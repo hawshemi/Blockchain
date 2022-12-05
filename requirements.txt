@@ -3,3 +3,7 @@ requests
 cs50
 flask_session
 werkzeug
+itsdangerous
+gunicorn
+Jinja2
+MarkupSafe
