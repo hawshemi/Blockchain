@@ -4,13 +4,14 @@ import hashlib
 import datetime
 from flask import session
 
-
 from cs50 import SQL
 
 
 db = SQL("sqlite:///tx.db")
 
-timestamp = str(datetime.datetime.now(datetime.timezone.utc))
+now = datetime.datetime.now(datetime.timezone.utc)
+timestamp = str(now.strftime("%d/%m/%Y, %H:%M:%S"))
+
 BLOCKCHAIN_DIR = 'blockchain/'
 
 
