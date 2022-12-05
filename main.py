@@ -24,6 +24,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 # Ensure responses aren't cached
 @app.after_request
 def after_request(response):
+
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
@@ -39,6 +40,7 @@ Session(app)
 
 # A function for resetting blockchain (Deleting all blocks in folder except the genesis) 
 def delete_from(directory: str, keep: list) -> None:
+
     cwd = getcwd()
     try:
         chdir(directory)
@@ -51,14 +53,16 @@ def delete_from(directory: str, keep: list) -> None:
 
 # Evoid redondemcy by using is_provided function
 def is_provided(field):
+
     if not request.form.get(field):
-        return apology(f"Must provide {field}", 400)
+        return error(f"Must provide {field}", 400)
 
 
-# Main index - Blockchain Validity Check
+# Main index - Blockchain Validity Status
 @app.route('/')
 @login_required
 def check():
+
     results = check_integrity()
     return render_template('index.html', checking_results=results)
 
@@ -67,10 +71,17 @@ def check():
 @app.route('/send', methods=['GET', 'POST'])
 @login_required
 def send():
+
     if request.method == 'POST':
         reciever = request.form.get('reciever')
         sender = request.form.get('sender')
         amount = request.form.get('amount')
+
+        # Check if all fields are correct and filled.
+        result_check = is_provided("reciever") or is_provided("sender") or is_provided("amount")
+
+        if result_check != None:
+            return result_check
 
         write_block(reciever=reciever, sender=sender, amount=amount)
         
@@ -130,7 +141,7 @@ def login():
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid username and/or password", 403)
+            return error("invalid username and/or password", 403)
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -158,33 +169,34 @@ def logout():
 def validate(password):
 
     if len(password) < 8:
-        return apology("Password should be at least 8 characters or longer")
+        return error("Password should be at least 8 characters or longer")
     elif not re.search("[0-9]", password):
-        return apology("Password must contain at least one digit")
+        return error("Password must contain at least one digit")
     elif not re.search("[A-Z]", password):
-        return apology("Password must contain at least one uppercase letter")
+        return error("Password must contain at least one uppercase letter")
     elif not re.search("[@_!#$%&^*()<>?~+-/\{}:]", password):
-        return apology("password must contain at least one special character")
+        return error("password must contain at least one special character")
 
 
+# Register a new user
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
+
     if request.method == "POST":
-        # Ensure username password and confiemation was provided
+        # Ensure username password and confirmation was provided
         result_check = is_provided("username") or is_provided("password") or is_provided("confirmation")
 
         if result_check != None:
             return result_check
 
-        # Validate the user' password
+        # Validate the user password
         validation_errors = validate(request.form.get("password"))
         if validation_errors:
             return validation_errors
 
         # Ensure password and confirmation match
         if request.form.get("password") != request.form.get("confirmation"):
-            return apology("passwords must match")
+            return error("passwords must match")
 
         # Query database for username
         try:
@@ -192,10 +204,10 @@ def register():
                                   username=request.form.get("username"),
                                   hash=generate_password_hash(request.form.get("password")))
         except:
-            return apology("username already exixt", 400)
+            return error("username already exixt", 400)
 
         if prim_key is None:
-            return apology("registration error", 403)
+            return error("registration error", 403)
 
         # Remember which user has logged in
         session["user_id"] = prim_key
@@ -206,12 +218,12 @@ def register():
     else:
         return render_template("register.html")
 
-
+# Handle Error
 def errorhandler(e):
-    """Handle error"""
+
     if not isinstance(e, HTTPException):
         e = InternalServerError()
-    return apology(e.name, e.code)
+    return error(e.name, e.code)
 
 
 # Listen for errors
