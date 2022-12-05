@@ -1,37 +1,70 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
 
-{% block title %}
-    Blockchain
-{% endblock %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
 
-{% block main %}
+        <!-- documentation at http://getbootstrap.com/docs/5.2 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+        
+        <script src="/static/js/table2excel.js" ></script>
 
-  <body>
-    <div class="container-fluid">
-        <h2>Blockchain Status</h2>
-        <h4 class="mb-5">Welcome {{ username }}</h4>
-        <h6>Here you can check the blockchain integrity.</h6>
-        <h6 class="mb-5">Note that this is all of the blockchain not just your blocks.</h6>
-            <div class="table-index">
-                {% for res in checking_results %}
-                    <table class="table table-dark table-striped table-bordered table-sm">
-                        <thead>
-                            <tr>
-                                <th>Block Number</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Block {{ res['block'] }}</td>
-                                <td>{{ res['results'] }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                {% endfor %}
+        <link href="/static/img/favicon.ico" rel="icon">
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,400&display=swap" rel="stylesheet">
+
+        <title>Blockchain: {% block title %}{% endblock %}</title>
+    </head>
+    <body>
+	<div id="particles-js"></div>
+	<script src="static/js/particles.min.js"></script>
+	<script src="static/js/script.js"></script>
+        <nav class="navbar navbar-expand-md">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">Blockchain</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                {% if session["user_id"] %}
+                    <ul class="nav navbar-nav mr-auto mt-2 navbar-text">
+                        <li class="nav-item"><a class="nav-link" href="/">Status</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/send">Send</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mt-2 navbar-logout">
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="nav navbar-nav mt-2 navbar-text">
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                    </ul>
+                {% endif %}
             </div>
-            <button onClick="window.location.reload();" class="btn btn-secondary">Check</button>
-    </div>
-  </body>
+          </div>
+        </nav>
 
-{% endblock %}
+        {% if get_flashed_messages() %}
+            <div class="alert alert-dark flash" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+            </div>
+        {% endif %}
+
+        <main class="container-fluid py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer class="footer text-muted">
+            By <a href="https://hawshemi.com/" target="_blank">Hawshemi</a>
+        </footer>
+    </body>
+</html>
