@@ -84,11 +84,7 @@ def write_block(reciever, sender, amount):
                     timestamp=timestamp,
                     tx_id=tx_id
                     )
-
-
+        
+        
 def main():
     check_integrity()
-
-
-if __name__ == '__main__':
-    main()
