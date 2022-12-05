@@ -8,12 +8,13 @@
 
   <body>
     <div class="container-fluid">
-        <div id="testak"></div>
         <h2>Blockchain Status</h2>
-            <div class="
-            table-index">
+        <h4 class="mb-5">Welcome {{ username }}</h4>
+        <h6>Here you can check the blockchain integrity.</h6>
+        <h6 class="mb-5">Note that this is all of the blockchain not just your blocks.</h6>
+            <div class="table-index">
                 {% for res in checking_results %}
-                    <table class="table table-dark table-striped table-bordered">
+                    <table class="table table-dark table-striped table-bordered table-sm">
                         <thead>
                             <tr>
                                 <th>Block Number</th>
@@ -29,6 +30,7 @@
                     </table>
                 {% endfor %}
             </div>
+            <button onClick="window.location.reload();" class="btn btn-secondary">Check</button>
     </div>
   </body>
 
