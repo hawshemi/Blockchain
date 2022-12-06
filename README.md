@@ -1,7 +1,7 @@
 # **Blockchain**
 ## **A Simple Blockchain By Hawshemi**
 ### **Live Website: https://blockchain.up.railway.app**
-#### Demo Video: 
+#### Video Demo: 
 _This project submitted at CS50 Final Project._
 
 ---
