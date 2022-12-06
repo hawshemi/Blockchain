@@ -66,3 +66,17 @@ The site was built using Flask(Python), SQLite3 for the database, CSS for Stylin
     ```
 
 ---
+# How this works?
+First, we have a `blockchain` folder which contains the blocks JSON.
+
+The blocks are created in the `block.py` file (`def write_block`). The Genesis block is file number `1` in the folder(DO NOT DELETE THIS FILE). For hashing, it uses the `hashlib` library. 
+
+`hashlib.md5(content).hexdigest()`
+
+When a new block is created, it generates a hash, and then the old hash is compared to the new one for an integrity check.
+
+In `main.py`, the flask app would run, and all the routing for HTML.
+
+---
+For more information of how blockchians work:
+https://www.investopedia.com/terms/b/blockchain.asp
