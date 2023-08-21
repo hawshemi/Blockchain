@@ -173,13 +173,13 @@ def logout():
 def validate(password):
 
     if len(password) < 8:
-        return error("PASSWORD SHOULD BE AT LEAST 8 CHARACTERS.")
-    elif not re.search("[0-9]", password):
-        return error("PASSWORD MUST CONTAIN AT LEAST ONE DIGIT.")
-    elif not re.search("[A-Z]", password):
-        return error("PASSWORD MUST CONTAIN AT LEAST ONE UPPERCASE LETTER.")
-    elif not re.search("[@_!#$%&^*()<>?~+-/\{}:]", password):
-        return error("PASSWORD MUST CONTAIN AT LEAST ONE SPECIAL CHARACTER.")
+        return error("Password should be at least 8 characters.")
+    # elif not re.search("[0-9]", password):
+        # return error("PASSWORD MUST CONTAIN AT LEAST ONE DIGIT.")
+    # elif not re.search("[A-Z]", password):
+        # return error("PASSWORD MUST CONTAIN AT LEAST ONE UPPERCASE LETTER.")
+    # elif not re.search("[@_!#$%&^*()<>?~+-/\{}:]", password):
+        # return error("PASSWORD MUST CONTAIN AT LEAST ONE SPECIAL CHARACTER.")
 
 
 # Register a new user
